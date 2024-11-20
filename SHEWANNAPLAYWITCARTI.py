@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
-from PIL import Image, ImageTk  # Import the PIL (Pillow) library
+import requests
 
 # Function to translate Carti slang to modern English
 def translate_to_english():
@@ -17,7 +16,7 @@ def translate_to_english():
         "flexin'": "showing off",
         "mood": "emotion or vibe",
         "lit": "exciting or fun",
-        "drip": "style or clothing",        
+        "drip": "style or clothing",
         "woke": "aware or enlightened",
         "ballin'": "living a luxurious life"
     }
@@ -32,27 +31,39 @@ def translate_to_english():
     result_text = " ".join(translated_text)
     result_label.config(text=result_text)
 
-# Create tkinter window (Only one Tk instance needed)
+# Function to download the image
+def download_image(url, save_path):
+    try:
+        # Send a GET request to the image URL
+        response = requests.get(url)
+        
+        # Save the image content to a file
+        with open(save_path, 'wb') as file:
+            file.write(response.content)
+        print(f"Image saved to {save_path}")
+    except Exception as e:
+        print(f"Error downloading image: {e}")
+
+# Create tkinter window
 root = tk.Tk()
 root.title("Playboi Carti to English Translator")
 root.geometry("800x600")  # Set the window size
 
-# Set up the image background
-try:
-    img_path = r"C:\Users\Andrew.Owotomo24\Downloads\your_image.jpg"  # Ensure it's an actual image file
-    img = Image.open(img_path)
-    
-    # Convert the image to a Tkinter-compatible format
-    bg_image = ImageTk.PhotoImage(img)
+# Image URL for the background
+image_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRR1qo2VBCIfe_KW2W8a4GCMnYA2otaClEWcD7E5gFys5KZaMb4F1elM3poMmqdGtMLJA&usqp=CAU"
+image_path = "background_image.png"  # Local path to save the image
 
-    # Add the image to a label and place it in the window
-    bg_label = tk.Label(root, image=bg_image)
-    bg_label.place(relwidth=1, relheight=1)  # Make the image cover the window
-    
-except Exception as e:
-    print(f"Error loading image: {e}")
+# Download and save the image
+download_image(image_url, image_path)
 
-# Create input field for Carti's phrase
+# Load the background image using tkinter.PhotoImage (works with .png and .gif)
+bg_image = tk.PhotoImage(file=image_path)
+
+# Add the image to a label and place it in the window
+bg_label = tk.Label(root, image=bg_image)
+bg_label.place(relwidth=1, relheight=1)  # Make the image cover the window
+
+# Create input field for Carti's phrase entry
 entry = tk.Entry(root, width=50)
 entry.pack(pady=10)
 
