@@ -77,3 +77,4 @@ result_label.pack(pady=20)
 
 # Run the application
 root.mainloop()
+   
