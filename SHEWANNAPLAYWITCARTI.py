@@ -16,6 +16,15 @@ def translate_to_english():
         "mood": "emotion or vibe",
         "lit": "exciting or fun",
         "drip": "style or clothing",
+        "gyat": "fatti",
+        "fweh": "popular carti adlib",
+        "CUTTI": "nickname of playboi Carti",
+        "(￣(工)￣)": "freaky play boi carti",
+        "＞﹏＜": "sad play boi carti",
+        "(～￣▽￣)～": "happy play boi carti",
+        "╰（‵□′）╯": "mad play boi carti",
+        "(ˉ﹃ˉ)": "dumb play boi carti",
+        "(•_•)": "scary play boi carti",
         "woke": "aware or enlightened",
         "ballin'": "living a luxurious life"
     }
